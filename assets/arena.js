@@ -1,5 +1,5 @@
-let channelSlug = 'typography-and-interaction-too' // The “slug” is just the end of the URL.
-let myUsername = 'eric-li' // For linking to your profile.
+let channelSlug = 'gossip-4rjknshdafi' // The “slug” is just the end of the URL.
+let myUsername = 'ali-salifov' // For linking to your profile.
 
 
 
