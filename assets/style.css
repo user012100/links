@@ -1,0 +1,21 @@
+/* These styles are just to make it easier to see the blocks, initially. */
+
+body {
+	--spacing: 2em;
+
+	font-family: monospace;
+	font-size: 1rem;
+	padding: var(--spacing);
+}
+
+body, header, section, ul, li, footer, address {
+	display: grid;
+	gap: var(--spacing);
+}
+
+main { max-inline-size: 36rem }
+
+a { color: blue; }
+em { font-style: italic; }
+strong { font-weight: bold; }
+p { max-inline-size: 50ch; }
