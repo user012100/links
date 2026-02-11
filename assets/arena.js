@@ -31,7 +31,6 @@ let renderBlock = (blockData) => {
 		let linkItem =
 			`
 			<li>
-				<p><em>Link</em></p>
 				<figure>
 					<picture>
 						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
@@ -70,7 +69,6 @@ let renderBlock = (blockData) => {
 		let imageItem =
 			`
 			<li>
-				<p><em>Image</em></p>
 				<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 			</li>
 			`
@@ -85,7 +83,6 @@ let renderBlock = (blockData) => {
 		let textItem =
 			`
 			<li>
-				<p><em>Text</em></p>
 				<div>${blockData.content.html}</div>
 			</li>
 			`
@@ -104,7 +101,6 @@ let renderBlock = (blockData) => {
 			let videoItem =
 				`
 				<li>
-					<p><em>Video</em></p>
 					<video controls src="${ blockData.attachment.url }"></video>
 				</li>
 				`
@@ -148,7 +144,6 @@ let renderBlock = (blockData) => {
 			let linkedVideoItem =
 				`
 				<li>
-					<p><em>Linked Video</em></p>
 					${ blockData.embed.html }
 				</li>
 				`
