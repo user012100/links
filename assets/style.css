@@ -17,8 +17,7 @@ body {
     overflow: hidden;
 }
 
-#channel-blocks img,
-#channel-blocks video {
+#channel-blocks img, video, iframe {
     width: 100%;
     height: 100%;
     object-fit: cover;

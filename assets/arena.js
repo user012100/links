@@ -101,7 +101,7 @@ let renderBlock = (blockData) => {
 			let videoItem =
 				`
 				<li>
-					<video controls src="${ blockData.attachment.url }"></video>
+					<video controls src="${blockData.attachment.url}"></video>
 				</li>
 				`
 
@@ -114,6 +114,14 @@ let renderBlock = (blockData) => {
 		// Uploaded PDFs!
 		else if (contentType.includes('pdf')) {
 			// …up to you!
+			let pdfItem =
+				`
+				<li class="pdf-block">
+					<iframe src=${blockData.attachment.url}></iframe>	
+				</li>
+				`
+
+				channelBlocks.insertAdjacentHTML('beforeend', pdfItem)
 		}
 
 		// Uploaded audio!
