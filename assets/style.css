@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 
 h1 {
-  font-family: "Syne", sans-serif;
-  font-weight: 800;
-  font-style: normal;
+	font-family: "Syne", sans-serif;
+	font-weight: 800;
+	font-style: normal;
+	font-size: 4rem;
+	color: black;
+	position: absolute;
+	z-index: 1;
 }
-
 
 body {
 	--spacing: 0em;
@@ -17,19 +20,29 @@ body {
 
 #channel-blocks {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	gap: var(--spacing);
 }
 
+@media (width > 600px) {
+	#channel-blocks {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	svg {
+		width: 100vw;
+		height: 5rem;
+	}
+}
+
 #channel-blocks li {
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
 }
 
 #channel-blocks img, video, iframe {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 a { 
@@ -48,13 +61,6 @@ svg {
 
 ellipse {
 	fill: #FCF451;
-}
-
-h1 {
-	font-size: 10rem;
-	color: black;
-	position: absolute;
-	z-index: 1;
 }
 
 header {
