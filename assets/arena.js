@@ -67,11 +67,31 @@ let renderBlock = (blockData) => {
 	// Images!
 	else if (blockData.type == 'Image') {
 		// …up to you!
+		let imageItem =
+			`
+			<li>
+				<p><em>Image</em></p>
+				<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+			</li>
+			`
+
+		// puts it into the page!
+		channelBlocks.insertAdjacentHTML('beforeend', imageItem)
 	}
 
 	// Text!
 	else if (blockData.type == 'Text') {
 		// …up to you!
+		let textItem =
+			`
+			<li>
+				<p><em>Text</em></p>
+				<div>${blockData.content.html}</div>
+			</li>
+			`
+
+		// puts it into the page!
+		channelBlocks.insertAdjacentHTML('beforeend', textItem)
 	}
 
 	// Uploaded (not linked) media…
