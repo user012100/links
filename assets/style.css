@@ -33,3 +33,12 @@ p {
 	max-inline-size: 50ch; 
 	color: #F0DFD5;
 }
+
+ellipse {
+	fill: #FCF451;
+}
+
+h1 {
+	font-size: 10rem;
+	color: black;
+}
