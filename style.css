@@ -15,12 +15,13 @@ body {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: var(--spacing);
+
+	li {
+		aspect-ratio: 1 / 1;
+		overflow: hidden;
+	}
 }
 
-#channel-blocks li {
-	aspect-ratio: 1 / 1;
-	overflow: hidden;
-}
 
 #channel-blocks img, video, iframe {
 	width: 100%;
