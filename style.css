@@ -4,6 +4,7 @@ header {
 	padding: 1rem;
 	position: sticky;
 	top: 0;
+	z-index: 1;
 }
 
 body {
@@ -63,7 +64,7 @@ a p {
 	position: absolute;
 	font-family: "Syne", sans-serif;
 	/* using clamp here to keep the text within the svg buttons */
-	font-size: clamp(0.6rem, 2vw, 1.25rem);
+	font-size: clamp(0.6rem, 2vw, 1.5rem);
 	font-weight: 700;
 	color: #111111;
 }

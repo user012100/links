@@ -152,7 +152,7 @@ let renderBlock = (blockData) => {
 			let linkedVideoItem =
 				`
 				<li>
-					${ blockData.embed.html }
+					<img alt="${blockData.image.alt_text}" src="${ blockData.image.src }">
 				</li>
 				`
 
