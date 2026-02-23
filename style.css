@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+
 header {
 	padding: 1rem;
 	position: sticky;
@@ -22,13 +24,45 @@ body {
 	}
 }
 
-
 #channel-blocks img, video, iframe {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-a { 
-	color: #3F8D54; 
+
+nav {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.75rem;
+}
+
+a {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* using flex: 1 to fill the flex container */
+	flex: 1;
+}
+
+a img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+a p {
+	position: absolute;
+	/* using clamp here to keep the text within buttons */
+	font-size: clamp(0.6rem, 2vw, 1.25rem);
+	font-weight: bold;
+	color: #111111;
 }
