@@ -1,37 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
-
-h1 {
-	font-family: "Syne", sans-serif;
-	font-weight: 800;
-	font-style: normal;
-	font-size: 4rem;
-	color: black;
-	position: absolute;
-	z-index: 1;
+header {
+	padding: 1rem;
+	position: sticky;
+	top: 0;
 }
 
 body {
-	--spacing: 0em;
 	background-color: #EB5B95;
 	font-family: monospace;
 	font-size: 1rem;
-	padding: var(--spacing);
+	padding: 0rem;
 }
 
 #channel-blocks {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: var(--spacing);
-}
-
-@media (width > 600px) {
-	#channel-blocks {
-		grid-template-columns: repeat(4, 1fr);
-	}
-	svg {
-		width: 100vw;
-		height: 5rem;
-	}
 }
 
 #channel-blocks li {
@@ -47,23 +30,4 @@ body {
 
 a { 
 	color: #3F8D54; 
-}
-
-p { 
-	max-inline-size: 50ch; 
-	color: #F0DFD5;
-}
-
-svg {
-	position: absolute;
-	z-index: 0;
-}
-
-ellipse {
-	fill: #FCF451;
-}
-
-header {
-	display: block;
-	height: 15rem;
 }
