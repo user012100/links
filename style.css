@@ -61,8 +61,9 @@ a img {
 
 a p {
 	position: absolute;
-	/* using clamp here to keep the text within buttons */
+	font-family: "Syne", sans-serif;
+	/* using clamp here to keep the text within the svg buttons */
 	font-size: clamp(0.6rem, 2vw, 1.25rem);
-	font-weight: bold;
+	font-weight: 700;
 	color: #111111;
 }
