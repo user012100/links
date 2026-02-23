@@ -116,8 +116,8 @@ let renderBlock = (blockData) => {
 			// …up to you!
 			let pdfItem =
 				`
-				<li class="pdf-block">
-					<iframe src=${blockData.attachment.url}></iframe>	
+				<li>
+					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 				</li>
 				`
 
@@ -135,7 +135,7 @@ let renderBlock = (blockData) => {
 				</li>
 				`
 
-			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
+			// channelBlocks.insertAdjacentHTML('beforeend', audioItem)
 
 			// More on`audio`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
@@ -149,6 +149,7 @@ let renderBlock = (blockData) => {
 		// Linked video!
 		if (embedType.includes('video')) {
 			// …still up to you, but here’s an example `iframe` element:
+			// changed it to an image thumbnail of the video
 			let linkedVideoItem =
 				`
 				<li>
