@@ -12,10 +12,10 @@ let placeChannelInfo = (channelData) => {
 	let channelLink = document.querySelector('#channel-link')
 
 	// Then set their content/attributes to our data:
-	channelTitle.innerHTML = channelData.title
-	channelDescription.innerHTML = channelData.description.html
-	channelCount.innerHTML = channelData.counts.blocks
-	channelLink.href = `https://www.are.na/channel/${channelSlug}`
+	// channelTitle.innerHTML = channelData.title
+	// channelDescription.innerHTML = channelData.description.html
+	// channelCount.innerHTML = channelData.counts.blocks
+	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
 
 
@@ -63,7 +63,8 @@ let renderBlock = (blockData) => {
 			`
 			<li>
 				<button type="button">
-					<img src="assets/text-button.svg" alt="Read Text">
+					<img src="assets/text-button.svg" alt="Read Text" class="default-button>
+					<img src="assets/play-button.svg" alt="Read Text" class="hover-button">
 				</button>
 			</li>
 			`
@@ -153,7 +154,6 @@ let renderBlock = (blockData) => {
 }
 
 
-
 // A function to display the owner/collaborator info:
 let renderUser = (userData) => {
 	let channelUsers = document.querySelector('#channel-users') // Container.
@@ -161,9 +161,7 @@ let renderUser = (userData) => {
 	let userAddress =
 		`
 		<address>
-			<img src="${ userData.avatar }">
 			<h3>${ userData.name }</h3>
-			<p><a href="https://are.na/${ userData.slug }">Are.na profile ↗</a></p>
 		</address>
 		`
 
@@ -201,7 +199,7 @@ let fetchJson = (url, callback, pageResponses = []) => {
 
 // Now that we have said all the things we *can* do, go get the channel data:
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
-	console.log(json) // Always good to check your response!
+	// console.log(json) // Always good to check your response!
 
 	placeChannelInfo(json) // Pass all the data to the first function, above.
 	renderUser(json.owner) // Pass just the nested object `.owner`.
@@ -209,14 +207,14 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
 
 // Get your info to put with the owner's:
 fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
-	console.log(json) // See what we get back.
+	// console.log(json) // See what we get back.
 
 	renderUser(json) // Pass this to the same function, no nesting.
 })
 
 // And the data for the blocks:
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=position_desc`, (json) => {
-	console.log(json) // See what we get back.
+	// console.log(json) // See what we get back.
 
 	// Loop through the nested `.data` array (list).
 	json.data.forEach((blockData) => {
