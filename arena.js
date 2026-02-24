@@ -63,15 +63,19 @@ let renderBlock = (blockData) => {
 		// …up to you!
 		let textItem =
 			`
-			<li>
+			<li class="text-block">
 				<button type="button" class="text-button">
-					<img src="assets/text-button.svg" alt="Read Text" class="default-button>
-					<img src="assets/play-button.svg" alt="Read Text" class="hover-button">
+					<img src="assets/text-button.svg" alt="Read Text">
 				</button>
+				<dialog>
+					${blockData.content.html}
+					<button class="close"></button>
+				</dialog>
 			</li>
 			`
 
 		// puts it into the page!
+		// console.log(`${blockData.content.html}`); testing
 		channelBlocks.insertAdjacentHTML('beforeend', textItem)
 	}
 
@@ -166,9 +170,9 @@ let renderUser = (userData) => {
 
 /* function to enable modal opening and closing, from eric's example */
 let initInteraction = () => {
-	let blocks = document.querySelectorAll('.image-block, .link-block')
+	let blocks = document.querySelectorAll('.image-block, .text-block')
 	blocks.forEach((block) => {
-		let openButton = block.querySelector('.image-button')
+		let openButton = block.querySelector('.image-button, .text-button')
 		let dialog = block.querySelector('dialog')
 		let closeButton = dialog.querySelector('button')
 
