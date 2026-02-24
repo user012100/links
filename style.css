@@ -35,11 +35,15 @@ body {
 		transform: scale(1.4);
 	}
 
-	li:has(p, audio) {
+	li:has(button) {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		
+		button {
+			max-width: 60%;
+			max-height: 60%;
+		}
 	}
 
 	p {

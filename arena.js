@@ -62,7 +62,9 @@ let renderBlock = (blockData) => {
 		let textItem =
 			`
 			<li>
-				<div>${blockData.content.html}</div>
+				<button type="button">
+					<img src="assets/text-button.svg" alt="Read Text">
+				</button>
 			</li>
 			`
 
@@ -109,7 +111,9 @@ let renderBlock = (blockData) => {
 			let audioItem =
 				`
 				<li>
-					<audio controls src="${ blockData.attachment.url }"></audio>
+					<button type="button">
+						<img src="assets/play-button.svg" alt="Play Audio">
+					</button>
 				</li>
 				`
 
