@@ -90,9 +90,11 @@ header button p {
 	}
 
 	header nav button {
-		flex: 0 1 auto;     /* buttons can shrink and wrap */
+		/* stopping the buttons from shrinking and wrapping */
+		flex: 0 1 auto;
 		width: auto;
 		width: 10rem;
+		cursor: pointer;
 	}
 
 	header nav button img {
