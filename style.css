@@ -7,13 +7,12 @@ header {
 	position: sticky;
 	top: 0;
 	z-index: 1;
+	margin-block-end: -3rem;
 }
 
 /* body styles */
 body {
 	background-color: #EB5B95;
-	font-family: monospace;
-	font-size: 1rem;
 }
 
 /* channel blocks styles */
@@ -58,12 +57,23 @@ body {
 
 /* dialog styles, from eric's example */
 .image-block dialog[open] {
-	width: 100vw;
+	width: 100%;
 	background-color: #EB5B95;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	/* image block styles */
 	img {
+		width: auto;
+		height: auto;
 		object-fit: contain;
+		display: block;
+	}
+
+	/* hiding button to close out of modal */
+	button {
+		display: none;
 	}
 }
 
@@ -92,29 +102,30 @@ nav {
 }
 
 /* navigation item styles */
-a {
+button {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	text-transform: uppercase;
 	/* from MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex
 	using flex: 1 to fill the flex container elements evenly inside the container */
 	flex: 1;
 }
 
 /* navigation item svg styles */
-a img {
+button img {
 	width: 100%;
 	height: auto;
 	display: block;
 }
 
 /* navigation item text styles */
-a p {
+button p {
 	position: absolute;
 	font-family: "Syne", sans-serif;
 	/* using clamp here to keep the text within the svg buttons */
-	font-size: clamp(0.7rem, 2vw, 1.5rem);
-	font-weight: 700;
+	font-size: clamp(0.5rem, 2vw, 1.5rem);
+	font-weight: 800;
 	color: #111111;
 }
