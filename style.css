@@ -1,5 +1,7 @@
+/* importing google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 
+/* header styles */
 header {
 	padding: 1rem;
 	position: sticky;
@@ -7,24 +9,28 @@ header {
 	z-index: 1;
 }
 
+/* body styles */
 body {
 	background-color: #EB5B95;
 	font-family: monospace;
 	font-size: 1rem;
-	padding: 0rem;
 }
 
+/* channel blocks styles */
 #channel-blocks {
+	/* grid layout */
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: var(--spacing);
 
+	/* grid item styles */
 	li {
 		aspect-ratio: 1 / 1;
 		overflow: hidden;
 		background-color: #EB5B95;
 	}
 
+	/* image block thumbnail styles */
 	li:has(.image-button) {
 		button, img, video {
 			width: 100%;
@@ -37,6 +43,7 @@ body {
 		}	
 	}
 
+	/* text and audio block thumbnail styles */
 	li:has(.text-button, .play-button) {
 		display: flex;
 		align-items: center;
@@ -47,37 +54,30 @@ body {
 			max-height: 60%;
 		}
 	}
-
-	p {
-		font-family: "Syne", sans-serif;
-		font-weight: 700;
-		font-size: 1.5rem;
-		line-height: 1;
-		padding: 0.25rem;
-		color: #111111;
-		text-align: center;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
 }
 
+/* dialog styles, from eric's example */
 .image-block dialog[open] {
 	width: 100vw;
 	background-color: #EB5B95;
 
+	/* image block styles */
 	img {
 		object-fit: contain;
 	}
 }
 
+/* backdrop overlay */
 ::backdrop {
 	background-color: rgb(0 0 0 / 75%); /* A dark overlay. */
 }
 
+/* prevent body scrolling when dialog is open */
 body:has(dialog[open]) {
 	overflow: hidden;
 }
 
+/* navigation styles */
 nav {
 	position: fixed;
 	bottom: 0;
@@ -91,6 +91,7 @@ nav {
 	padding: 0.75rem;
 }
 
+/* navigation item styles */
 a {
 	position: relative;
 	display: flex;
@@ -101,12 +102,14 @@ a {
 	flex: 1;
 }
 
+/* navigation item svg styles */
 a img {
 	width: 100%;
 	height: auto;
 	display: block;
 }
 
+/* navigation item text styles */
 a p {
 	position: absolute;
 	font-family: "Syne", sans-serif;

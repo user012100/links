@@ -5,18 +5,22 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="reset.css" rel="stylesheet">
 		<link href="style.css" rel="stylesheet">
+		<!-- defer runs the script after the DOM is loaded -->
 		<script defer src="arena.js"></script>
 		<title>Gossip</title>
 	</head>
 	<body>
+		<!-- header -->
 		<header>
 			<a href="#"><img src="assets/logo.svg" alt="Gossip"></a>
 		</header>
+		<!-- main blocks -->
 		<main>
 			<section>
 				<ul id="channel-blocks"></ul>
 			</section>
 		</main>
+		<!-- navigation -->
 		<nav>
 			<a href="#"><img src="assets/button.svg"><p>All</p></a>
 			<a href="#"><img src="assets/button.svg"><p>Images</p></a>
@@ -24,6 +28,7 @@
 			<a href="#"><img src="assets/button.svg"><p>Other</p></a>
 			<a href="#" id="omg-button"><img src="assets/button.svg"><p>OMG!</p></a>
 		</nav>
+		<!-- footer -->
 		<footer>
 			<section id="channel-users"></section>
 		</footer>

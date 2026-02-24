@@ -1,8 +1,6 @@
 let channelSlug = 'gossip-4rjknshdafi' // The “slug” is just the end of the URL.
 let myUsername = 'ali-salifov' // For linking to your profile.
 
-
-
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
 	// Target some elements in your HTML:
@@ -17,8 +15,6 @@ let placeChannelInfo = (channelData) => {
 	// channelCount.innerHTML = channelData.counts.blocks
 	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
-
-
 
 // Then our big function for specific-block-type rendering:
 let renderBlock = (blockData) => {
@@ -135,7 +131,7 @@ let renderBlock = (blockData) => {
 	else if (blockData.type == 'Embed') {
 		let embedType = blockData.embed.type
 
-		// Linked video!
+		// Linked video! (Youtube)
 		if (embedType.includes('video')) {
 			// …still up to you, but here’s an example `iframe` element:
 			// changed it to an image thumbnail of the video
@@ -151,14 +147,8 @@ let renderBlock = (blockData) => {
 			// More on `iframe`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 		}
-
-		// Linked audio!
-		else if (embedType.includes('rich')) {
-			// …up to you!
-		}
 	}
 }
-
 
 // A function to display the owner/collaborator info:
 let renderUser = (userData) => {
@@ -174,6 +164,7 @@ let renderUser = (userData) => {
 	channelUsers.insertAdjacentHTML('beforeend', userAddress)
 }
 
+/* function to enable modal opening and closing, from eric's example */
 let initInteraction = () => {
 	let blocks = document.querySelectorAll('.image-block, .link-block')
 	blocks.forEach((block) => {
@@ -222,8 +213,6 @@ let fetchJson = (url, callback, pageResponses = []) => {
 // More on `fetch`:
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/fetch
 
-
-
 // Now that we have said all the things we *can* do, go get the channel data:
 fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
 	// console.log(json) // Always good to check your response!
@@ -250,5 +239,6 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 		renderBlock(blockData) // Pass the single block’s data to the render function.
 	})
 
+	/* initialize interaction with the blocks, from eric's example */
 	initInteraction()
 })
