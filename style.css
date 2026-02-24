@@ -245,7 +245,11 @@ dialog[open] {
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		max-width: 7rem;
+		max-width: 8rem;
+	}
+
+	.dialog-buttons button img {
+		max-width: 8rem;
 	}
 }
 

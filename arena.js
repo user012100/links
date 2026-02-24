@@ -183,8 +183,19 @@ let renderBlock = (blockData) => {
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.src }" class="video-thumbnail">
 					</button>
 					<dialog>
-						${ blockData.embed.html }
-						<button class="close"></button>
+						<section class="dialog-container">
+							${ blockData.embed.html }
+							<section class="dialog-buttons">
+								<button type="button" class="dialog-close">
+									<img src="assets/button.svg" alt="Close">
+									<p>Close</p>
+								</button>
+								<button type="button" class="dialog-share">
+									<img src="assets/button.svg" alt="Share">
+									<p>Share</p>
+								</button>
+							</section>
+						</section>
 					</dialog>
 				</li>
 				`
