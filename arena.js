@@ -47,8 +47,14 @@ let renderBlock = (blockData) => {
 		// …up to you!
 		let imageItem =
 			`
-			<li>
-				<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+			<li class="image-block">
+				<button type="button" class="image-button">
+					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="thumbnail">
+				</button>
+				<dialog>
+					<img src="${blockData.image.large.src_2x}">
+					<button class="close"></button>
+				</dialog>
 			</li>
 			`
 
@@ -62,7 +68,7 @@ let renderBlock = (blockData) => {
 		let textItem =
 			`
 			<li>
-				<button type="button">
+				<button type="button" class="text-button">
 					<img src="assets/text-button.svg" alt="Read Text" class="default-button>
 					<img src="assets/play-button.svg" alt="Read Text" class="hover-button">
 				</button>
@@ -112,7 +118,7 @@ let renderBlock = (blockData) => {
 			let audioItem =
 				`
 				<li>
-					<button type="button">
+					<button type="button" class="play-button">
 						<img src="assets/play-button.svg" alt="Play Audio">
 					</button>
 				</li>
@@ -168,7 +174,28 @@ let renderUser = (userData) => {
 	channelUsers.insertAdjacentHTML('beforeend', userAddress)
 }
 
+let initInteraction = () => {
+	let blocks = document.querySelectorAll('.image-block, .link-block')
+	blocks.forEach((block) => {
+		let openButton = block.querySelector('.image-button')
+		let dialog = block.querySelector('dialog')
+		let closeButton = dialog.querySelector('button')
 
+		openButton.onclick = () => {
+			dialog.showModal()
+		}
+
+		closeButton.onclick = () => {
+			dialog.close()
+		}
+
+		dialog.onclick = (event) => { // Listen on our `modal` also…
+			if (event.target == dialog) { // Only if clicks are to itself (the background).
+				dialog.close() // Close it then too.
+			}
+		}
+	})
+}
 
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
 let fetchJson = (url, callback, pageResponses = []) => {
@@ -222,4 +249,6 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 		renderBlock(blockData) // Pass the single block’s data to the render function.
 	})
+
+	initInteraction()
 })
