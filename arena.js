@@ -31,28 +31,7 @@ let renderBlock = (blockData) => {
 		let linkItem =
 			`
 			<li>
-				<figure>
-					<picture>
-						<source media="(width < 500px)" srcset="${ blockData.image.small.src_2x }">
-						<source media="(width < 1000px)" srcset="${ blockData.image.medium.src_2x }">
-						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
-					</picture>
-					<figcaption>
-						<h3>
-							${ blockData.title
-								? blockData.title // If `blockData.title` exists, do this.
-								: `Untitled` // Otherwise do this.
-
-								// This is a “ternary operator”: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-							}
-						</h3>
-						${ blockData.description // Here, checks for the object; could also write `blockData.description?.html`.
-							? `<div>${blockData.description.html}</div>` // Wrap/interpolate the HTML.
-							: `` // Our “otherwise” can also be blank!
-						}
-					</figcaption>
-				</figure>
-				<p><a href="${ blockData.source.url }">See the original ↗</a></p>
+				<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 			</li>
 			`
 
@@ -130,12 +109,11 @@ let renderBlock = (blockData) => {
 			let audioItem =
 				`
 				<li>
-					<p><em>Audio</em></p>
-					<audio controls src="${ blockData.attachment.url }"></video>
+					<audio controls src="${ blockData.attachment.url }"></audio>
 				</li>
 				`
 
-			// channelBlocks.insertAdjacentHTML('beforeend', audioItem)
+			channelBlocks.insertAdjacentHTML('beforeend', audioItem)
 
 			// More on`audio`:
 			// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio

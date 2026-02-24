@@ -22,13 +22,37 @@ body {
 	li {
 		aspect-ratio: 1 / 1;
 		overflow: hidden;
+		background-color: #FCF451;
 	}
-}
 
-#channel-blocks img, video, iframe {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+	img, video, iframe {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	img, video {
+		transform: scale(1.4);
+	}
+
+	li:has(p, audio) {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		
+	}
+
+	p {
+		font-family: "Syne", sans-serif;
+		font-weight: 700;
+		font-size: 1.5rem;
+		line-height: 1;
+		padding: 0.25rem;
+		color: #111111;
+		text-align: center;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
 
 
@@ -50,7 +74,8 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	/* using flex: 1 to fill the flex container */
+	/* from MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/flex
+	using flex: 1 to fill the flex container elements evenly inside the container */
 	flex: 1;
 }
 
