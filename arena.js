@@ -32,7 +32,16 @@ let renderBlock = (blockData) => {
 				</button>
 				<dialog>
 					<a href="${blockData.source.url}"><img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="thumbnail"></a>
-					<button class="close"></button>
+					<section class="dialog-buttons">
+						<button type="button" class="dialog-close">
+							<img src="assets/button.svg" alt="Close">
+							<p>Close</p>
+						</button>
+						<button type="button" class="dialog-share">
+							<img src="assets/button.svg" alt="Share">
+							<p>Share</p>
+						</button>
+					</section>
 				</dialog>
 			</li>
 			`
@@ -54,17 +63,18 @@ let renderBlock = (blockData) => {
 					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="image-thumbnail">
 				</button>
 				<dialog>
-					<img src="${blockData.image.large.src_2x}">
-					<button class="close"></button>
-					<section class="dialog-buttons">
-						<button type="button" class="dialog-close">
-							<img src="assets/button.svg" alt="Close">
-							<p>Close</p>
-						</button>
-						<button type="button" class="dialog-share">
-							<img src="assets/button.svg" alt="Share">
-							<p>Share</p>
-						</button>
+					<section class="dialog-container">
+						<img src="${blockData.image.large.src_2x}">
+						<section class="dialog-buttons">
+							<button type="button" class="dialog-close">
+								<img src="assets/button.svg" alt="Close">
+								<p>Close</p>
+							</button>
+							<button type="button" class="dialog-share">
+								<img src="assets/button.svg" alt="Share">
+								<p>Share</p>
+							</button>
+						</section>
 					</section>
 				</dialog>
 			</li>

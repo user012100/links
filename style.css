@@ -6,7 +6,7 @@ header {
 	padding: 1rem;
 	position: sticky;
 	top: 0;
-	z-index: 1;
+	z-index: 2;
 	margin-block-end: -2rem;
 	max-width: 30rem;
 }
@@ -22,7 +22,7 @@ header nav {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 2;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -185,8 +185,8 @@ body {
 	/* video block play button styles */
 	img.play-button {
 		position: absolute;
-		max-width: 33%;
-		max-height: 33%;
+		max-width: 25%;
+		max-height: 25%;
 		z-index: 1;
 	} 
 }
@@ -200,12 +200,15 @@ dialog[open] {
 	-webkit-user-select: none;
 	user-select: none;
 
+	.dialog-container {
+		max-height: 100vh;
+		max-width: 100vw;
+	}
+
 	/* image block styles */
 	img, iframe {
-		width: 75vw;
-		height: 75vh;
-		max-width: 100dvw;
-		max-height: 100dvh;
+		max-width: 75vw;
+		max-height: 75vh;
 		object-fit: contain;
 	}
 
@@ -226,28 +229,36 @@ dialog[open] {
 		justify-content: space-between;
 	}
 
+	/* dialog buttons text styles */
 	.dialog-buttons p {
 		position: absolute;
 		font-family: "Syne", sans-serif;
-		font-size: 2rem;
+		font-size: 1rem;
 		font-weight: 800;
 		color: #111111;
 	}
 
 	/* individual button styles */
 	.dialog-buttons button {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		flex: 1;
-		max-width: 10rem;
+		max-width: 7rem;
 	}
 }
 
-dialog[open] > :first-child {
+dialog[open] .dialog-container > :first-child {
 	border: 0.125rem solid #3c9b27;
 }
 
 /* text block dialog styles */
 li.text-block > dialog[open] {
 	background-color: #EB5B95;
+	p {
+		border: none;
+	}
 }
 
 /* backdrop overlay */
