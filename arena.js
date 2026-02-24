@@ -56,6 +56,16 @@ let renderBlock = (blockData) => {
 				<dialog>
 					<img src="${blockData.image.large.src_2x}">
 					<button class="close"></button>
+					<section class="dialog-buttons">
+						<button type="button" class="dialog-close">
+							<img src="assets/button.svg" alt="Close">
+							<p>Close</p>
+						</button>
+						<button type="button" class="dialog-share">
+							<img src="assets/button.svg" alt="Share">
+							<p>Share</p>
+						</button>
+					</section>
 				</dialog>
 			</li>
 			`
