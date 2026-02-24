@@ -26,8 +26,14 @@ let renderBlock = (blockData) => {
 		// Declares a “template literal” of the dynamic HTML we want.
 		let linkItem =
 			`
-			<li>
-				<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+			<li class="link-block">
+				<button type="button" class="link-button">
+					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+				</button>
+				<dialog>
+					<a href="${blockData.source.url}"><img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="thumbnail"></a>
+					<button class="close"></button>
+				</dialog>
 			</li>
 			`
 
@@ -45,7 +51,7 @@ let renderBlock = (blockData) => {
 			`
 			<li class="image-block">
 				<button type="button" class="image-button">
-					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="thumbnail">
+					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="image-thumbnail">
 				</button>
 				<dialog>
 					<img src="${blockData.image.large.src_2x}">
@@ -104,8 +110,14 @@ let renderBlock = (blockData) => {
 			// …up to you!
 			let pdfItem =
 				`
-				<li>
-					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+				<li class="pdf-block">
+					<button type="button" class="pdf-button">
+						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+					</button>
+					<dialog>
+						<iframe src="${blockData.attachment.url}"></iframe>
+						<button class="close"></button>
+					</dialog>
 				</li>
 				`
 
@@ -117,10 +129,14 @@ let renderBlock = (blockData) => {
 			// …still up to you, but here’s an `audio` element:
 			let audioItem =
 				`
-				<li>
-					<button type="button" class="play-button">
-						<img src="assets/play-button.svg" alt="Play Audio">
+				<li class="audio-block">
+					<button type="button" class="audio-button">
+						<img src="assets/audio-button.svg" alt="Play Audio">
 					</button>
+					<dialog>
+						<audio controls src="${blockData.attachment.url}"></audio>
+						<button class="close"></button>
+					</dialog>
 				</li>
 				`
 
@@ -141,8 +157,15 @@ let renderBlock = (blockData) => {
 			// changed it to an image thumbnail of the video
 			let linkedVideoItem =
 				`
-				<li>
-					<img alt="${blockData.image.alt_text}" src="${ blockData.image.src }">
+				<li class="video-block">
+					<button type="button" class="video-button">
+						<img src="assets/play-button.svg" alt="Play Video" class="play-button">
+						<img alt="${blockData.image.alt_text}" src="${ blockData.image.src }" class="video-thumbnail">
+					</button>
+					<dialog>
+						${ blockData.embed.html }
+						<button class="close"></button>
+					</dialog>
 				</li>
 				`
 
@@ -170,9 +193,9 @@ let renderUser = (userData) => {
 
 /* function to enable modal opening and closing, from eric's example */
 let initInteraction = () => {
-	let blocks = document.querySelectorAll('.image-block, .text-block')
+	let blocks = document.querySelectorAll('.image-block, .text-block, .link-block, .pdf-block, .video-block, .audio-block')
 	blocks.forEach((block) => {
-		let openButton = block.querySelector('.image-button, .text-button')
+		let openButton = block.querySelector('.image-button, .text-button, .link-button, .pdf-button, .video-button, .audio-button')
 		let dialog = block.querySelector('dialog')
 		let closeButton = dialog.querySelector('button')
 
