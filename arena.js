@@ -94,8 +94,19 @@ let renderBlock = (blockData) => {
 					<img src="assets/text-button.svg" alt="Read Text">
 				</button>
 				<dialog>
-					${blockData.content.html}
-					<button class="close"></button>
+					<section class="dialog-container">
+						${blockData.content.html}
+						<section class="dialog-buttons">
+							<button type="button" class="dialog-close">
+								<img src="assets/button.svg" alt="Close">
+								<p>Close</p>
+							</button>
+							<button type="button" class="dialog-share">
+								<img src="assets/button.svg" alt="Share">
+								<p>Share</p>
+							</button>
+						</section>
+					</section>
 				</dialog>
 			</li>
 			`
@@ -114,8 +125,14 @@ let renderBlock = (blockData) => {
 			// …still up to you, but we’ll give you the `video` element:
 			let videoItem =
 				`
-				<li>
-					<video controls src="${blockData.attachment.url}"></video>
+				<li class="video-block">
+					<button type="button" class="video-button">
+						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
+					</button>
+					<dialog>
+						<video controls src="${blockData.attachment.url}"></video>
+						<button class="close"></button>
+					</dialog>
 				</li>
 				`
 
@@ -154,8 +171,19 @@ let renderBlock = (blockData) => {
 						<img src="assets/audio-button.svg" alt="Play Audio">
 					</button>
 					<dialog>
-						<audio controls src="${blockData.attachment.url}"></audio>
-						<button class="close"></button>
+						<section class="dialog-container">
+							<audio controls src="${blockData.attachment.url}"></audio>
+							<section class="dialog-buttons">
+								<button type="button" class="dialog-close">
+									<img src="assets/button.svg" alt="Close">
+									<p>Close</p>
+								</button>
+								<button type="button" class="dialog-share">
+									<img src="assets/button.svg" alt="Share">
+									<p>Share</p>
+								</button>
+							</section>
+						</section>
 					</dialog>
 				</li>
 				`
@@ -246,6 +274,37 @@ let initInteraction = () => {
 	})
 }
 
+/* content filtering function to hide and unhide certain blocks */
+let filterBlocks = (filter) => {
+	/* selecting the main container and the blocks */
+	let allBlocks = document.querySelector('#channel-blocks')
+	let blocks = allBlocks.querySelectorAll('li')
+
+	/* looping through the blocks */
+	blocks.forEach((block) => {
+		/* checking if the block is an image or a video */
+		let allImages = block.classList.contains('image-block')
+		let allVideos = block.classList.contains('video-block')
+
+		/* setting the show variable to false */
+		let show = false
+
+		/* checking if the button clicked is all, images, videos, or others */
+		if (filter === 'all') {
+			show = true
+		} else if (filter === 'images') {
+			show = allImages
+		} else if (filter === 'videos') {
+			show = allVideos
+		} else if (filter === 'others') {
+			show = !allImages && !allVideos
+		}
+
+		/* toggling the hidden class */
+		block.classList.toggle('hidden', !show)
+	})
+}
+
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
 let fetchJson = (url, callback, pageResponses = []) => {
 	fetch(url, { cache: 'no-store' })
@@ -299,4 +358,10 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 
 	/* initialize interaction with the blocks, from eric's example */
 	initInteraction()
+
+	/* enabling content filtering */
+	document.getElementById('filter-all-button').addEventListener('click', () => filterBlocks('all'))
+	document.getElementById('filter-images-button').addEventListener('click', () => filterBlocks('images'))
+	document.getElementById('filter-videos-button').addEventListener('click', () => filterBlocks('videos'))
+	document.getElementById('filter-others-button').addEventListener('click', () => filterBlocks('others'))
 })

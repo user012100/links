@@ -150,6 +150,10 @@ body {
 		cursor: pointer;
 	}
 
+	.hidden {
+		display: none;
+	}
+
 	/* image block thumbnail styles */
 	li:has(.image-button) {
 		button, img {
@@ -211,17 +215,7 @@ dialog[open] {
 		max-height: 75vh;
 		object-fit: contain;
 	}
-
-	/* pdf block styles */
-	.pdf-block iframe {
-		aspect-ratio: 8.5 / 11;
-	}
-
-	/* video block styles */
-	.video-block iframe {
-		aspect-ratio: 16 / 9;
-	}
-
+	
 	/* dialog buttons styles */
 	.dialog-buttons {
 		margin-top: 0.75rem;
@@ -245,11 +239,11 @@ dialog[open] {
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		max-width: 8rem;
+		max-width: 7rem;
 	}
 
 	.dialog-buttons button img {
-		max-width: 8rem;
+		max-width: 7rem;
 	}
 }
 
