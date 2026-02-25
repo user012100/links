@@ -386,12 +386,10 @@ dialog[open] {
 	/* dialog buttons text styles */
 	.dialog-buttons p {
 		position: absolute;
-		font-family: "Bricolage Grotesque", sans-serif;
-		font-size: 1.3rem;
-		font-weight: 700;
-		text-transform: uppercase;
+		font-family: "Syne", sans-serif;
+		font-size: 1rem;
+		font-weight: 800;
 		color: #111111;
-		border: none;
 	}
 
 	/* individual button styles */
