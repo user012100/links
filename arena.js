@@ -64,7 +64,7 @@ let renderBlock = (blockData) => {
 				</button>
 				<dialog data-share-url="${blockData.image.large.src_2x}">
 					<section class="dialog-container">
-						<img src="${blockData.image.large.src_2x}">
+						<img src="${blockData.image.large.src_2x}" class="thumbnail">
 						<section class="dialog-buttons">
 							<button type="button" class="dialog-close">
 								<img src="assets/button.svg" alt="Close">
@@ -95,7 +95,9 @@ let renderBlock = (blockData) => {
 				</button>
 				<dialog data-share-url="https://www.are.na/block/${blockData.id}">
 					<section class="dialog-container">
-						${blockData.content.html}
+						<section class="text-content">
+							<p>${blockData.content.html}</p>
+						</section>
 						<section class="dialog-buttons">
 							<button type="button" class="dialog-close">
 								<img src="assets/button.svg" alt="Close">
@@ -130,7 +132,7 @@ let renderBlock = (blockData) => {
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</button>
 					<dialog data-share-url="${blockData.attachment.url}">
-						<video controls src="${blockData.attachment.url}"></video>
+						<video controls src="${blockData.attachment.url}" class="thumbnail"></video>
 						<button class="close"></button>
 					</dialog>
 				</li>
@@ -152,7 +154,7 @@ let renderBlock = (blockData) => {
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</button>
 					<dialog data-share-url="${blockData.attachment.url}">
-						<iframe src="${blockData.attachment.url}"></iframe>
+						<iframe src="${blockData.attachment.url}" class="thumbnail"></iframe>
 						<button class="close"></button>
 					</dialog>
 				</li>
@@ -172,7 +174,7 @@ let renderBlock = (blockData) => {
 					</button>
 					<dialog data-share-url="${blockData.attachment.url}">
 						<section class="dialog-container">
-							<audio controls src="${blockData.attachment.url}"></audio>
+							<audio controls src="${blockData.attachment.url}" class="thumbnail"></audio>
 							<section class="dialog-buttons">
 								<button type="button" class="dialog-close">
 									<img src="assets/button.svg" alt="Close">
@@ -375,8 +377,8 @@ let logoScroll = () => {
 
 	// a function to update the header when the user scrolls down 
 	let updateHeader = () => {
-		// only run the function if the window is less than 481px wide
-		if (window.innerWidth < 481) {
+		// only run the function if the window is less than 1401px wide
+		if (window.innerWidth < 1401) {
 			// using window.scrollY to get the number of pixels the user has scrolled down and toggling the scrolled class on the header if the user has scrolled down more than 0 pixels, scrollY on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
 			header.classList.toggle('scrolled', window.scrollY > 0)
 		} else {

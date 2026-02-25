@@ -28,7 +28,7 @@ header nav {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.75rem;
 	padding: 0.75rem;
 }
 
@@ -89,7 +89,7 @@ header button p {
 }
 
 /* media query for smaller screens to change the logo size */
-@media (width < 481px) {
+@media (width < 1401px) {
 	header > a img {
 		max-width: 100%;
 		/* specifying max-width as one of the transitioning properties to make it smooth */
@@ -102,14 +102,15 @@ header button p {
 	}
 	/* targeting the header when it is scrolled */
 	header.scrolled {
-		display: flex;
-		justify-content: center;
+		/* display: flex; */
+		/* justify-content: center; */
 		max-width: 100%;
 	}
 	/* targeting the logo when it is scrolled, making it smaller */
 	header.scrolled > a img {
-		max-width: 12rem;
+		max-width: 15rem;
 	}
+	
 }
 
 /* media query for larger screens to change the nav position */
@@ -358,7 +359,10 @@ dialog[open] {
 	.dialog-container {
 		max-height: 100vh;
 		max-width: 100vw;
-		min-width: 20rem;
+	}
+
+	img.thumbnail, iframe, audio {
+		border: 0.125rem solid #3c9b27;
 	}
 
 	/* image block styles */
@@ -370,7 +374,7 @@ dialog[open] {
 	
 	/* dialog buttons styles */
 	.dialog-buttons {
-		margin-block-start: 0.75rem;
+		margin-block-start: 1rem;
 		display: flex;
 		justify-content: space-between;
 	}
@@ -382,6 +386,7 @@ dialog[open] {
 		font-size: 1rem;
 		font-weight: 800;
 		color: #111111;
+		border: none;
 	}
 
 	/* individual button styles */
@@ -391,24 +396,23 @@ dialog[open] {
 		align-items: center;
 		justify-content: center;
 		flex: 1;
-		max-width: 7rem;
+		max-width: 8rem;
 	}
 
 	.dialog-buttons button img {
 		max-width: 7rem;
 	}
-}
-
-/* targetting the first child of the dialog container for the border */
-dialog[open] .dialog-container > :first-child {
-	border: 0.125rem solid #3c9b27;
-}
-
-/* text block dialog styles */
-li.text-block > dialog[open] {
-	background-color: #EB5B95;
-	p {
-		border: none;
+	.text-content {
+		background-color: #EB5B95;
+		padding: 2rem;
+		border: 0.125rem solid #3c9b27;
+		text-align: center;
+		font-family: "Bricolage Grotesque", sans-serif;
+		font-size: 1.3rem;
+		font-weight: 400;
+		color: #111111;
+		line-height: 1.5;
+		min-width: 17rem;
 	}
 }
 
