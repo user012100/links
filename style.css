@@ -106,9 +106,8 @@ header button p {
 	}
 	/* targeting the header when it is scrolled */
 	header.scrolled {
-		/* display: flex; */
-		/* justify-content: center; */
-		max-width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 	/* targeting the logo when it is scrolled, making it smaller */
 	header.scrolled > a img {
@@ -166,6 +165,22 @@ header button p {
 	/* navigation item text styles */
 	header nav button p {
 		font-size: 1.25rem;
+	}
+}
+
+/* query for titles to be not centered on bigger screens, adding this retroactively cuz i forgot to do it in the first place */
+@media (width > 480px) {
+	header {
+		justify-content: flex-start;
+	}
+
+	header > a {
+		justify-content: flex-start;
+	}
+
+	/* keep scrolled state from re-centering it */
+	header.scrolled {
+		justify-content: flex-start;
 	}
 }
 

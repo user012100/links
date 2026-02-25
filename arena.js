@@ -1,15 +1,15 @@
 let channelSlug = 'gossip-4rjknshdafi' // The “slug” is just the end of the URL.
 let myUsername = 'ali-salifov' // For linking to your profile.
 
-// Target some elements in your HTML:
-let channelTitle = document.querySelector('#channel-title')
-let channelDescription = document.querySelector('#channel-description')
-let channelLink = document.querySelector('#channel-link')
-
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
 	// console.log(channelTitle)
 	// Then set their content/attributes to our data:
+	// Target some elements in your HTML:
+	let channelTitle = document.querySelector('#channel-title')
+	let channelDescription = document.querySelector('#channel-description')
+	let channelLink = document.querySelector('#channel-link')
+
 	channelTitle.innerHTML = channelData.title
 	channelDescription.innerHTML = channelData.description.html
 	channelLink.href = `https://www.are.na/channel/${channelSlug}`
@@ -390,7 +390,7 @@ let feelingLucky = () => {
 }
 
 // a function to add a scrolled class to the header when the user scrolls down 
-let logoScroll = () => {
+let logoAnimate = () => {
 	// selecting the header 
 	let header = document.querySelector('header')
 
@@ -485,7 +485,7 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 	navAnimation()
 
 	// enabling the logo scroll functionality 
-	logoScroll()
+	logoAnimate()
 
 	// starting the omg button font cycle
 	animateOMG()
