@@ -26,13 +26,33 @@ header nav {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	gap: 0.75rem;
+	gap: 1rem;
 	padding: 0.75rem;
 }
 
-/* navigation item styles */
-header button {
+/* container for the 4 filter buttons */
+header nav .nav-filter-option {
 	position: relative;
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* stopping the buttons from shrinking and wrapping, from MDN: https://developer.mozilla.org/en-US/en-US/docs/Web/CSS/flex */
+	flex: 0 1 auto;
+	width: 10rem;
+}
+
+/* the select button/svg icon */
+header nav .nav-select {
+	position: relative;
+	height: auto;
+	pointer-events: none;
+	z-index: 2;
+}
+
+/* general navigation item styles */
+header button {
+	position: absolute;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -54,13 +74,14 @@ header button p {
 	position: absolute;
 	font-family: "Syne", sans-serif;
 	/* using clamp here to keep the text within the svg buttons */
-	font-size: clamp(0.55rem, 2vw, 1.5rem);
+	font-size: clamp(0.55rem, 2vw, 1rem);
 	font-weight: 800;
 	color: #111111;
+	z-index: 4;
 }
 
 /* media query for larger screens to change the nav position */
-@media (width > 1280px) {
+@media (width > 1440px) {
 	header {
 		display: flex;
 		align-items: center;
@@ -79,7 +100,7 @@ header button p {
 	}
 
 	header nav {
-		position: static;
+		position: relative;
 		display: flex;
 		gap: 1.5rem;
 		padding: 0;
@@ -129,7 +150,7 @@ body {
 		grid-template-columns: repeat(4, 1fr);
 	}
 
-	@media (width > 1280px) {
+	@media (width > 1440px) {
 		grid-template-columns: repeat(5, 1fr);
 	}
 

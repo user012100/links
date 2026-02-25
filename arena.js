@@ -305,6 +305,32 @@ let filterBlocks = (filter) => {
 	})
 }
 
+/* a function to change the position of the select button based on the button clicked */
+let navAnimation = () => {
+	/* targetting the selection green svg element */
+	let selectedButton = document.querySelector('.nav-select')
+
+	/* an array of the filter buttons and their ids */
+	let filters = [
+		['all', 'filter-all-button'],
+		['images', 'filter-images-button'],
+		['videos', 'filter-videos-button'],
+		['others', 'filter-others-button']
+	]
+
+	filters.forEach(([filter, id]) => {
+		/* adding an event listener to the filter buttons */
+		document.getElementById(id).addEventListener('click', () => {
+			/* filtering the blocks */
+			filterBlocks(filter)
+			/* at first I tried moving the selection svg using px/rem values but because the nav items are in a flex container, it wasnt working so now im targetting the wrapper of the button clicked to insert the select button before it, im using the closest() method to target the parent element of the button clicked */
+			let wrapper = document.getElementById(id).closest('.nav-filter-option')
+			/* inserting the selection svg before the first child of the wrapper */
+			if (wrapper) wrapper.insertBefore(selectedButton, wrapper.firstChild)
+		})
+	})
+}
+
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
 let fetchJson = (url, callback, pageResponses = []) => {
 	fetch(url, { cache: 'no-store' })
@@ -359,9 +385,6 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 	/* initialize interaction with the blocks, from eric's example */
 	initInteraction()
 
-	/* enabling content filtering */
-	document.getElementById('filter-all-button').addEventListener('click', () => filterBlocks('all'))
-	document.getElementById('filter-images-button').addEventListener('click', () => filterBlocks('images'))
-	document.getElementById('filter-videos-button').addEventListener('click', () => filterBlocks('videos'))
-	document.getElementById('filter-others-button').addEventListener('click', () => filterBlocks('others'))
+	/* enabling the filter navigation selection logic */
+	navAnimation()
 })
