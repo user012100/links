@@ -1,6 +1,10 @@
 /* importing google fonts */
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Syne:wght@400..800&display=swap');
 
+html {
+	scroll-behavior: smooth;
+}
+
 /* header styles */
 header {
 	padding: 1rem;
@@ -510,4 +514,29 @@ nav section:hover, #title-logo:hover, .play-button:hover, .dialog-close:hover, .
 
 #omg-button, .dialog-middle-button {
 	animation: hoverWobble 0.75s linear infinite;
+}
+
+@keyframes modalAnimation {
+	from {
+		transform: scale(0);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+dialog[open] {
+	transform-origin: center;
+	animation: modalAnimation 220ms ease-out;
+}
+
+@keyframes modalBackdropFade {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+::backdrop {
+	animation: modalBackdropFade 220ms ease-out;
 }
