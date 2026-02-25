@@ -276,6 +276,9 @@ let initInteraction = () => {
 				dialog.close() // Close it then too.
 			}
 		}
+
+		// adding an event listener to the dialog to close it when the OMG! button is clicked
+		document.getElementById('omg-button').addEventListener('click', feelingLucky)
 	})
 }
 
@@ -372,6 +375,18 @@ let shareContent = async (url) => {
 	} finally {
 		sharing = false
 	}
+}
+
+/* a function to randomly select a block and open the dialog using the OMG! button */
+let feelingLucky = () => {
+	/* selecting all the blocks */
+	let blocks = document.querySelectorAll('.image-block, .text-block, .link-block, .pdf-block, .video-block, .audio-block')
+	/* selecting a random block using math.floor() to get a random index and then selecting the block at that index because the math.random() returns a number from 0-1, we need to multiply it by the number of blocks to get a random index, but also math.floor() to round up to the nearest integer, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor */
+	let randomBlock = blocks[Math.floor(Math.random() * blocks.length)]
+	/* selecting the dialog of the random block */
+	let dialog = randomBlock.querySelector('dialog')
+	/* running the showModal() function to open it */
+	dialog.showModal()
 }
 
 // Finally, a helper function to fetch data from the API, then run a callback function with it:

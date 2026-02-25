@@ -90,15 +90,18 @@ header button p {
 		max-width: 100%;
 	}
 
+	/* making sure the logo is not stretched */
 	header > a {
 		flex: 0 0 auto;
 	}
 
+	/* also locking the logo to a max width */
 	header > a img {
 		display: block;
 		max-width: 28rem;
 	}
 
+	/* navigation styles */
 	header nav {
 		position: relative;
 		display: flex;
@@ -109,6 +112,7 @@ header button p {
 		margin-inline-start: 1.5rem;
 	}
 
+	/* navigation item styles */
 	header nav button {
 		/* stopping the buttons from shrinking and wrapping */
 		flex: 0 1 auto;
@@ -117,11 +121,13 @@ header button p {
 		cursor: pointer;
 	}
 
+	/* navigation item svg styles */
 	header nav button img {
 		width: 100%;
 		height: auto;
 	}
 
+	/* navigation item text styles */
 	header nav button p {
 		font-size: 1rem;
 	}
