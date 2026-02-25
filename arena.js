@@ -263,6 +263,7 @@ let initInteraction = () => {
 
 		closeButton.onclick = () => {
 			dialog.close()
+			stopVideos()
 		}
 
 		// adding an event listener to the share button to share the original content of the dialog 
@@ -271,6 +272,7 @@ let initInteraction = () => {
 		dialog.onclick = (event) => { // Listen on our `modal` also…
 			if (event.target == dialog) { // Only if clicks are to itself (the background).
 				dialog.close() // Close it then too.
+				stopVideos()
 			}
 		}
 
@@ -278,6 +280,13 @@ let initInteraction = () => {
 		document.getElementById('omg-button').addEventListener('click', feelingLucky)
 	})
 }
+
+// using this example michael shared with me to stop the videos and iframes from playing when the dialog is closed, from https://gist.github.com/cferdinandi/9044694?permalink_comment_id=3324219#gistcomment-3324219
+let stopVideos = () => {
+	document.querySelectorAll('iframe').forEach(v => { v.src = v.src });
+	document.querySelectorAll('video').forEach(v => { v.pause() });
+	document.querySelectorAll('audio').forEach(a => { a.pause() });
+};
 
 // content filtering function to hide and unhide certain blocks by assigning class
 let filterBlocks = (filter) => {
