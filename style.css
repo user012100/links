@@ -15,7 +15,7 @@ header {
 
 /* logo and nav bar shadow, found this on MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow */
 header img {
-	filter: drop-shadow(0 0.25rem 0.75rem rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.5));
 }
 
 /* navigation styles */
@@ -226,7 +226,7 @@ body {
 		img {
 			width: 40vw;
 			height: 40vh;
-			filter: drop-shadow(0 0.25rem 0.75rem rgba(0, 0, 0, 0.5));
+			filter: drop-shadow(0 0.25rem 0.5rem rgba(0, 0, 0, 0.5));
 		}
 	}
 
