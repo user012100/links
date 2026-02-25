@@ -9,11 +9,13 @@ header {
 	z-index: 2;
 	margin-block-end: -2rem;
 	max-width: 30rem;
+	display: flex;
+	justify-content: center;
 }
 
 /* logo and nav bar shadow, found this on MDN: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/filter-function/drop-shadow */
 header img {
-	filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(0 0.25rem 0.75rem rgba(0, 0, 0, 0.5));
 }
 
 /* navigation styles */
@@ -78,6 +80,30 @@ header button p {
 	font-weight: 800;
 	color: #111111;
 	z-index: 4;
+}
+
+/* media query for smaller screens to change the logo size */
+@media (width < 481px) {
+	header > a img {
+		max-width: 100%;
+		/* specifying max-width as one of the transitioning properties to make it smooth */
+		transition: max-width 0.25s ease;
+	}
+	/* targeting the logo to always center it */
+	header > a {
+		display: flex;
+		justify-content: center;
+	}
+	/* targeting the header when it is scrolled */
+	header.scrolled {
+		display: flex;
+		justify-content: center;
+		max-width: 100%;
+	}
+	/* targeting the logo when it is scrolled, making it smaller */
+	header.scrolled > a img {
+		max-width: 12rem;
+	}
 }
 
 /* media query for larger screens to change the nav position */
@@ -200,6 +226,7 @@ body {
 		img {
 			width: 40vw;
 			height: 40vh;
+			filter: drop-shadow(0 0.25rem 0.75rem rgba(0, 0, 0, 0.5));
 		}
 	}
 
@@ -220,6 +247,7 @@ body {
 		max-width: 25%;
 		max-height: 25%;
 		z-index: 1;
+		filter: drop-shadow(0 0.5rem 1rem rgba(0, 0, 0, 0.5));
 	} 
 }
 
