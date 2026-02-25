@@ -357,7 +357,9 @@ im basically passing the url and title to the share() method, from MDN: https://
 let sharing = false
 
 // a function to pass the url and title to the share() method
-let shareContent = async (url, title) => {
+// async function is used here because the share() method is asynchronous and needs to be awaited to wait for the share to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+// url is also passed to the share() method
+let shareContent = async (url) => {
 	/* if the share is already in progress, return and not trigger it again */
 	if (sharing) return
 	/* if the share is not in progress, set the sharing boolean to true */
@@ -365,7 +367,7 @@ let shareContent = async (url, title) => {
 	/* using try/finally to set the sharing boolean to false after the share is complete */
 	try {
 		/* using await to wait for the share() method to complete */
-		await navigator.share({ title, url })
+		await navigator.share({ url })
 	/* finally is run regardless of whether the share is successful or not, but all the urls are valid so it should always run, I got this from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch */
 	} finally {
 		sharing = false
