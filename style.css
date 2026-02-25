@@ -113,7 +113,7 @@ header button p {
 }
 
 /* media query for larger screens to change the nav position */
-@media (width > 1440px) {
+@media (width > 1400px) {
 	header {
 		display: flex;
 		align-items: center;
@@ -296,6 +296,10 @@ footer {
 		text-align: right;
 		max-width: 45ch;
 		margin-inline-start: auto;
+	}
+
+	footer {
+		margin-block-end: 2.5rem;
 	}
 }
 
