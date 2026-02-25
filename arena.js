@@ -1,19 +1,18 @@
 let channelSlug = 'gossip-4rjknshdafi' // The “slug” is just the end of the URL.
 let myUsername = 'ali-salifov' // For linking to your profile.
 
+// Target some elements in your HTML:
+let channelTitle = document.querySelector('#channel-title')
+let channelDescription = document.querySelector('#channel-description')
+let channelLink = document.querySelector('#channel-link')
+
 // First, let’s lay out some *functions*, starting with our basic metadata:
 let placeChannelInfo = (channelData) => {
-	// Target some elements in your HTML:
-	let channelTitle = document.querySelector('#channel-title')
-	let channelDescription = document.querySelector('#channel-description')
-	let channelCount = document.querySelector('#channel-count')
-	let channelLink = document.querySelector('#channel-link')
-
+	// console.log(channelTitle)
 	// Then set their content/attributes to our data:
-	// channelTitle.innerHTML = channelData.title
-	// channelDescription.innerHTML = channelData.description.html
-	// channelCount.innerHTML = channelData.counts.blocks
-	// channelLink.href = `https://www.are.na/channel/${channelSlug}`
+	channelTitle.innerHTML = channelData.title
+	channelDescription.innerHTML = channelData.description.html
+	channelLink.href = `https://www.are.na/channel/${channelSlug}`
 }
 
 // Then our big function for specific-block-type rendering:
@@ -237,20 +236,6 @@ let renderBlock = (blockData) => {
 	}
 }
 
-// A function to display the owner/collaborator info:
-let renderUser = (userData) => {
-	let channelUsers = document.querySelector('#channel-users') // Container.
-
-	let userAddress =
-		`
-		<address>
-			<h3>${ userData.name }</h3>
-		</address>
-		`
-
-	channelUsers.insertAdjacentHTML('beforeend', userAddress)
-}
-
 // function to enable modal opening and closing, from eric's example 
 let initInteraction = () => {
 	let blocks = document.querySelectorAll('.image-block, .text-block, .link-block, .pdf-block, .video-block, .audio-block')
@@ -294,7 +279,7 @@ let filterBlocks = (filter) => {
 		let allImages = block.classList.contains('image-block')
 		let allVideos = block.classList.contains('video-block')
 
-		// setting the show variable to false 
+		// creating andsetting the show variable to false 
 		let show = false
 
 		// checking if the button clicked is all, images, videos, or others 
@@ -305,6 +290,7 @@ let filterBlocks = (filter) => {
 		} else if (filter === 'videos') {
 			show = allVideos
 		} else if (filter === 'others') {
+			// if the block is not an image or a video, then show is true
 			show = !allImages && !allVideos
 		}
 
@@ -314,6 +300,7 @@ let filterBlocks = (filter) => {
 }
 
 // a function to change the position of the select button based on the button clicked 
+// im doing this because originally i wanted to move the green svg left/right with an animation so i created an invisible wrapper for it and everything but i couldnt figure out how to make it work with a flex container so i tried using relative units to position and move it, couldnt figure it out, so this is kinda leftover from that idea but now just functions as a visual cue for the selected filter (static)
 let navAnimation = () => {
 	// targetting the selection green svg element 
 	let selectedButton = document.querySelector('.nav-select')
@@ -328,12 +315,13 @@ let navAnimation = () => {
 
 	// looping through the filters 
 	filters.forEach(([filter, id]) => {
-		// adding an event listener to the filter buttons 
-		document.getElementById(id).addEventListener('click', () => {
-			// filtering the blocks 
+		// targeting the button clicked
+		let button = document.getElementById(id)
+		// adding an event listener to the button clicked
+		button.addEventListener('click', () => {
 			filterBlocks(filter)
-			// at first I tried moving the selection svg using px/rem values but because the nav items are in a flex container, it wasnt working so now im targetting the wrapper of the button clicked to insert the select button before it, im using the closest() method to target the parent element of the button clicked 
-			let wrapper = document.getElementById(id).closest('.nav-filter-option')
+			// targeting the parent element of the button clicked
+			let wrapper = button.parentElement
 			// inserting the selection svg before the first child of the wrapper 
 			if (wrapper) wrapper.insertBefore(selectedButton, wrapper.firstChild)
 		})
@@ -346,20 +334,12 @@ let getURL = (dialog) => {
 	return dialog.getAttribute('data-share-url')
 }
 
-// a function to share the content of the dialog
-// here im using the navigator.share() method to share the content of the dialog, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
-// im basically passing the url to the share() method, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share 
-// let shareContent = async (url) => {
-// 	// in order for navigator.share() to work I need to run it over https and use await to wait for the share() method to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/await 
-// 	await navigator.share({ url })
-// }
-
-// so the above didnt work because any double click or accidental click on the share button would trigger it multiple times and prevent the share menu from opening, so now im using a boolean to check if the share is already in progress and if it is, to return and not trigger it again
+// any double click or accidental click on the share button would trigger it multiple times and prevent the share menu from opening, so now im using a boolean to check if the share is already in progress and if it is, to return and not trigger it again
 
 // a boolean to check if the share is already in progress
 let sharing = false
 
-// a function to pass the url and title to the share() method
+// a function to pass the url to the share() method
 // async function is used here because the share() method is asynchronous and needs to be awaited to wait for the share to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function and https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
 let shareContent = async (url) => {
 	// if the share is already in progress, return and not trigger it again 
@@ -464,14 +444,6 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}`, (json) => {
 	// console.log(json) // Always good to check your response!
 
 	placeChannelInfo(json) // Pass all the data to the first function, above.
-	renderUser(json.owner) // Pass just the nested object `.owner`.
-})
-
-// Get your info to put with the owner's:
-fetchJson(`https://api.are.na/v3/users/${myUsername}/`, (json) => {
-	// console.log(json) // See what we get back.
-
-	renderUser(json) // Pass this to the same function, no nesting.
 })
 
 // And the data for the blocks:
