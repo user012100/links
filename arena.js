@@ -346,9 +346,23 @@ let getURL = (dialog) => {
 /* a function to share the content of the dialog
 here im using the navigator.share() method to share the content of the dialog, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
 im basically passing the url and title to the share() method, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share */
+// let shareContent = async (url = window.location.href, title = document.title) => {
+// 	/* in order for navigator.share() to work I need to run it over https and use await to wait for the share() method to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/await */
+// 	await navigator.share({ title, url })
+// }
+
+
+// trying this as a fix
+let sharing = false
+
 let shareContent = async (url = window.location.href, title = document.title) => {
-	/* in order for navigator.share() to work I need to run it over https and use await to wait for the share() method to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/await */
-	await navigator.share({ title, url })
+	if (sharing) return
+	sharing = true
+	try {
+		await navigator.share({ title, url })
+	} finally {
+		sharing = false
+	}
 }
 
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
