@@ -1,5 +1,5 @@
 /* importing google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Syne:wght@400..800&display=swap');
 
 /* header styles */
 header {
@@ -76,10 +76,15 @@ header button p {
 	position: absolute;
 	font-family: "Bricolage Grotesque", sans-serif;
 	/* using clamp here to keep the text within the svg buttons */
-	font-size: clamp(0.7rem, 3vw, 1rem);
+	font-size: clamp(0.7rem, 3vw, 1.25rem);
 	font-weight: 700;
 	color: #111111;
 	z-index: 4;
+}
+
+/* omg button text styles */
+#omg-button p {
+	font-style: italic;
 }
 
 /* media query for smaller screens to change the logo size */
@@ -155,7 +160,7 @@ header button p {
 
 	/* navigation item text styles */
 	header nav button p {
-		font-size: 1rem;
+		font-size: 1.25rem;
 	}
 }
 

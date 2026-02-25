@@ -251,7 +251,7 @@ let renderUser = (userData) => {
 	channelUsers.insertAdjacentHTML('beforeend', userAddress)
 }
 
-// function to enable modal opening and closing, from eric's example */
+// function to enable modal opening and closing, from eric's example 
 let initInteraction = () => {
 	let blocks = document.querySelectorAll('.image-block, .text-block, .link-block, .pdf-block, .video-block, .audio-block')
 	blocks.forEach((block) => {
@@ -268,7 +268,7 @@ let initInteraction = () => {
 			dialog.close()
 		}
 
-		// adding an event listener to the share button to share the original content of the dialog */
+		// adding an event listener to the share button to share the original content of the dialog 
 		shareButton.onclick = () => shareContent(getURL(dialog))
 
 		dialog.onclick = (event) => { // Listen on our `modal` also…
@@ -282,22 +282,22 @@ let initInteraction = () => {
 	})
 }
 
-// content filtering function to hide and unhide certain blocks */
+// content filtering function to hide and unhide certain blocks 
 let filterBlocks = (filter) => {
-	// selecting the main container and the blocks */
+	// selecting the main container and the blocks 
 	let allBlocks = document.querySelector('#channel-blocks')
 	let blocks = allBlocks.querySelectorAll('li')
 
-	// looping through the blocks */
+	// looping through the blocks 
 	blocks.forEach((block) => {
-		// checking if the block is an image or a video */
+		// checking if the block is an image or a video 
 		let allImages = block.classList.contains('image-block')
 		let allVideos = block.classList.contains('video-block')
 
-		// setting the show variable to false */
+		// setting the show variable to false 
 		let show = false
 
-		// checking if the button clicked is all, images, videos, or others */
+		// checking if the button clicked is all, images, videos, or others 
 		if (filter === 'all') {
 			show = true
 		} else if (filter === 'images') {
@@ -308,17 +308,17 @@ let filterBlocks = (filter) => {
 			show = !allImages && !allVideos
 		}
 
-		// toggling the hidden class */
+		// toggling the hidden class 
 		block.classList.toggle('hidden', !show)
 	})
 }
 
-// a function to change the position of the select button based on the button clicked */
+// a function to change the position of the select button based on the button clicked 
 let navAnimation = () => {
-	// targetting the selection green svg element */
+	// targetting the selection green svg element 
 	let selectedButton = document.querySelector('.nav-select')
 
-	// an array of the filter buttons and their ids */
+	// an array of the filter buttons and their ids 
 	let filters = [
 		['all', 'filter-all-button'],
 		['images', 'filter-images-button'],
@@ -326,32 +326,32 @@ let navAnimation = () => {
 		['others', 'filter-others-button']
 	]
 
-	// looping through the filters */
+	// looping through the filters 
 	filters.forEach(([filter, id]) => {
-		// adding an event listener to the filter buttons */
+		// adding an event listener to the filter buttons 
 		document.getElementById(id).addEventListener('click', () => {
-			// filtering the blocks */
+			// filtering the blocks 
 			filterBlocks(filter)
-			// at first I tried moving the selection svg using px/rem values but because the nav items are in a flex container, it wasnt working so now im targetting the wrapper of the button clicked to insert the select button before it, im using the closest() method to target the parent element of the button clicked */
+			// at first I tried moving the selection svg using px/rem values but because the nav items are in a flex container, it wasnt working so now im targetting the wrapper of the button clicked to insert the select button before it, im using the closest() method to target the parent element of the button clicked 
 			let wrapper = document.getElementById(id).closest('.nav-filter-option')
-			// inserting the selection svg before the first child of the wrapper */
+			// inserting the selection svg before the first child of the wrapper 
 			if (wrapper) wrapper.insertBefore(selectedButton, wrapper.firstChild)
 		})
 	})
 }
 
-// a function to get the share url from the dialog data attribute */
+// a function to get the share url from the dialog data attribute 
 let getURL = (dialog) => {
-	// using getAttribute() to get the data-share-url attribute from the dialog, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute */
+	// using getAttribute() to get the data-share-url attribute from the dialog, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute 
 	return dialog.getAttribute('data-share-url')
 }
 
 // a function to share the content of the dialog
 // here im using the navigator.share() method to share the content of the dialog, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
-// im basically passing the url and title to the share() method, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share */
-// let shareContent = async (url = window.location.href, title = document.title) => {
-// 	// in order for navigator.share() to work I need to run it over https and use await to wait for the share() method to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/await */
-// 	await navigator.share({ title, url })
+// im basically passing the url to the share() method, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share 
+// let shareContent = async (url) => {
+// 	// in order for navigator.share() to work I need to run it over https and use await to wait for the share() method to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/await 
+// 	await navigator.share({ url })
 // }
 
 // so the above didnt work because any double click or accidental click on the share button would trigger it multiple times and prevent the share menu from opening, so now im using a boolean to check if the share is already in progress and if it is, to return and not trigger it again
@@ -360,45 +360,44 @@ let getURL = (dialog) => {
 let sharing = false
 
 // a function to pass the url and title to the share() method
-// async function is used here because the share() method is asynchronous and needs to be awaited to wait for the share to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
-// url is also passed to the share() method
+// async function is used here because the share() method is asynchronous and needs to be awaited to wait for the share to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function and https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
 let shareContent = async (url) => {
-	// if the share is already in progress, return and not trigger it again */
+	// if the share is already in progress, return and not trigger it again 
 	if (sharing) return
-	// if the share is not in progress, set the sharing boolean to true */
+	// if the share is not in progress, set the sharing boolean to true
 	sharing = true
-	// using try/finally to set the sharing boolean to false after the share is complete */
+	// using try/finally to set the sharing boolean to false after the share is complete, this is again to prevent multiple shares from being triggered, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch
 	try {
-		// using await to wait for the share() method to complete */
+		// using await to wait for the share() method to complete 
 		await navigator.share({ url })
-	// finally is run regardless of whether the share is successful or not, but all the urls are valid so it should always run, I got this from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch */
+	// finally is run regardless of whether the share is successful or not, but all the urls are valid so it should always run, I got this from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch 
 	} finally {
 		sharing = false
 	}
 }
 
-// a function to randomly select a block and open the dialog using the OMG! button */
+// a function to randomly select a block and open the dialog using the OMG! button 
 let feelingLucky = () => {
-	// selecting all the blocks */
+	// selecting all the blocks 
 	let blocks = document.querySelectorAll('.image-block, .text-block, .link-block, .pdf-block, .video-block, .audio-block')
-	// selecting a random block using math.floor() to get a random index and then selecting the block at that index because the math.random() returns a number from 0-1, we need to multiply it by the number of blocks to get a random index, but also math.floor() to round up to the nearest integer, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor */
+	// selecting a random block using math.floor() to get a random index and then selecting the block at that index because the math.random() returns a number from 0-1, we need to multiply it by the number of blocks to get a random index, but also math.floor() to round up to the nearest integer, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor 
 	let randomBlock = blocks[Math.floor(Math.random() * blocks.length)]
-	// selecting the dialog of the random block */
+	// selecting the dialog of the random block 
 	let dialog = randomBlock.querySelector('dialog')
-	// running the showModal() function to open it */
+	// running the showModal() function to open it 
 	dialog.showModal()
 }
 
-// a function to add a scrolled class to the header when the user scrolls down */
+// a function to add a scrolled class to the header when the user scrolls down 
 let logoScroll = () => {
-	// selecting the header */
+	// selecting the header 
 	let header = document.querySelector('header')
 
-	// a function to update the header when the user scrolls down */
+	// a function to update the header when the user scrolls down 
 	let updateHeader = () => {
 		// only run the function if the window is less than 481px wide
 		if (window.innerWidth < 481) {
-			// using window.scrollY to get the number of pixels the user has scrolled down and toggling the scrolled class on the header if the user has scrolled down more than 0 pixels
+			// using window.scrollY to get the number of pixels the user has scrolled down and toggling the scrolled class on the header if the user has scrolled down more than 0 pixels, scrollY on MDN: https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY
 			header.classList.toggle('scrolled', window.scrollY > 0)
 		} else {
 			// if the window is greater than 481px wide, remove the scrolled class from the header
@@ -410,6 +409,29 @@ let logoScroll = () => {
 	window.addEventListener('scroll', updateHeader)
 	window.addEventListener('resize', updateHeader)
 	updateHeader()
+}
+
+// an array of the fonts to animate the omg button
+let fonts = ['"Syne", sans-serif', '"Bricolage Grotesque", sans-serif', '"Alegreya", serif']
+// a variable to keep track of the current font being used
+let fontCycle = 0
+
+// same thing for the font weights
+let weights = [700, 800]
+let weightCycle = 0
+
+// a function to animate the omg button
+let animateOMG = () => {
+	// selecting the omg button text
+	let omgButton = document.querySelector('#omg-button p')
+	// setting the font family to the current font in the array
+	omgButton.style.fontFamily = fonts[fontCycle]
+	// setting the font weight to one of the options in the array
+	omgButton.style.fontWeight = weights[weightCycle]
+	// i learned about the modulo operator trick a long time ago from my first computer science class at nyu back in 2019, I basically use it here to loop through the fonts array and reset it to 0 when it reaches the end
+	fontCycle = (fontCycle + 1) % fonts.length
+	// also using length here to calculate the size of the array
+	weightCycle = (weightCycle + 1) % weights.length
 }
 
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
@@ -463,12 +485,17 @@ fetchJson(`https://api.are.na/v3/channels/${channelSlug}/contents?per=100&sort=p
 		renderBlock(blockData) // Pass the single block’s data to the render function.
 	})
 
-	// initialize interaction with the blocks, from eric's example */
+	// initialize interaction with the blocks, from eric's example 
 	initInteraction()
 
-	// enabling the filter navigation selection logic */
+	// enabling the filter navigation selection logic 
 	navAnimation()
 
-	// enabling the logo scroll functionality */
+	// enabling the logo scroll functionality 
 	logoScroll()
+
+	// starting the omg button font cycle
+	animateOMG()
+	// setting an interval to run the animateOMG function every 2 seconds
+	setInterval(animateOMG, 300)
 })
