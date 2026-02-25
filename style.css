@@ -382,9 +382,10 @@ dialog[open] {
 	/* dialog buttons text styles */
 	.dialog-buttons p {
 		position: absolute;
-		font-family: "Syne", sans-serif;
-		font-size: 1rem;
-		font-weight: 800;
+		font-family: "Bricolage Grotesque", sans-serif;
+		font-size: 1.3rem;
+		font-weight: 700;
+		text-transform: uppercase;
 		color: #111111;
 		border: none;
 	}
@@ -402,6 +403,7 @@ dialog[open] {
 	.dialog-buttons button img {
 		max-width: 7rem;
 	}
+
 	.text-content {
 		background-color: #EB5B95;
 		padding: 2rem;
@@ -413,6 +415,55 @@ dialog[open] {
 		color: #111111;
 		line-height: 1.5;
 		min-width: 17rem;
+		max-width: 50ch;
+	}
+
+	/* link image wrapper */
+	.dialog-middle-button-container > a {
+		position: relative;
+		display: inline-block;
+	}
+
+	/* keep image as base layer */
+	.dialog-middle-button-container > a > .thumbnail {
+		display: block;
+	}
+
+	/* center overlay in the image/content area */
+	.dialog-middle-button-container > a > .dialog-middle-button {
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		width: fit-content;
+		height: fit-content;
+		z-index: 2;
+		pointer-events: none;
+	}
+
+	.dialog-middle-button {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.dialog-middle-button p {
+		position: absolute;
+		margin: auto;
+		width: fit-content;
+		height: fit-content;
+		text-align: center;
+		font-family: "Bricolage Grotesque", sans-serif;
+		font-size: 1.3rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: #111111;
+	}
+	
+	.dialog-middle-button img {
+		max-width: 8rem;
+		width: 100%;
+		height: auto;
 	}
 }
 
@@ -457,6 +508,6 @@ nav section:hover, #title-logo:hover, .play-button:hover, .dialog-close:hover, .
 	animation: hoverWobble 0.75s linear infinite;
 }
 
-#omg-button {
+#omg-button, .dialog-middle-button {
 	animation: hoverWobble 0.75s linear infinite;
 }
