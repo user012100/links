@@ -267,7 +267,7 @@ let initInteraction = () => {
 	})
 }
 
-// content filtering function to hide and unhide certain blocks 
+// content filtering function to hide and unhide certain blocks by assigning class
 let filterBlocks = (filter) => {
 	// selecting the main container and the blocks 
 	let allBlocks = document.querySelector('#channel-blocks')
