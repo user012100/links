@@ -521,7 +521,11 @@ body:has(dialog[open]) {
 	100% { transform: rotate(0deg); }
 }
 
-nav section:hover, #title-logo:hover, .play-button:hover, .dialog-close:hover, .dialog-share:hover, #omg-button, .dialog-middle-button {
+#title-logo:hover, .play-button:hover, .dialog-close:hover, .dialog-share:hover, .dialog-middle-button, #omg-button {
+	animation: hoverWobble 0.75s linear infinite;
+}
+
+nav section:not(:has(> #omg-button)):hover {
 	animation: hoverWobble 0.75s linear infinite;
 }
 
