@@ -351,15 +351,22 @@ im basically passing the url and title to the share() method, from MDN: https://
 // 	await navigator.share({ title, url })
 // }
 
+// so the above didnt work because any double click or accidental click on the share button would trigger it multiple times and prevent the share menu from opening, so now im using a boolean to check if the share is already in progress and if it is, to return and not trigger it again
 
-// trying this as a fix
+// a boolean to check if the share is already in progress
 let sharing = false
 
-let shareContent = async (url = window.location.href, title = document.title) => {
+// a function to pass the url and title to the share() method
+let shareContent = async (url, title) => {
+	/* if the share is already in progress, return and not trigger it again */
 	if (sharing) return
+	/* if the share is not in progress, set the sharing boolean to true */
 	sharing = true
+	/* using try/finally to set the sharing boolean to false after the share is complete */
 	try {
+		/* using await to wait for the share() method to complete */
 		await navigator.share({ title, url })
+	/* finally is run regardless of whether the share is successful or not, but all the urls are valid so it should always run, I got this from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch */
 	} finally {
 		sharing = false
 	}
