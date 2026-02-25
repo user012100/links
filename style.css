@@ -1,5 +1,5 @@
 /* importing google fonts */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Syne:wght@400..800&display=swap');
 
 /* header styles */
 header {
@@ -7,7 +7,7 @@ header {
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	margin-block-end: -2rem;
+	margin-block-start: -2rem;
 	max-width: 30rem;
 	display: flex;
 	justify-content: center;
@@ -74,10 +74,10 @@ header button img {
 /* navigation item text styles */
 header button p {
 	position: absolute;
-	font-family: "Syne", sans-serif;
+	font-family: "Bricolage Grotesque", sans-serif;
 	/* using clamp here to keep the text within the svg buttons */
-	font-size: clamp(0.55rem, 2vw, 1rem);
-	font-weight: 800;
+	font-size: clamp(0.7rem, 3vw, 1rem);
+	font-weight: 700;
 	color: #111111;
 	z-index: 4;
 }
@@ -274,7 +274,7 @@ dialog[open] {
 	
 	/* dialog buttons styles */
 	.dialog-buttons {
-		margin-top: 0.75rem;
+		margin-block-start: 0.75rem;
 		display: flex;
 		justify-content: space-between;
 	}
