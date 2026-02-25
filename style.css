@@ -105,7 +105,6 @@ header button p {
 		gap: 1.5rem;
 		padding: 0;
 		flex: 1 1 auto;
-		min-width: 0;
 		justify-content: flex-start;
 		margin-inline-start: 1.5rem;
 	}
@@ -270,6 +269,7 @@ dialog[open] {
 	}
 }
 
+/* targetting the first child of the dialog container for the border */
 dialog[open] .dialog-container > :first-child {
 	border: 0.125rem solid #3c9b27;
 }

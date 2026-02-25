@@ -25,12 +25,13 @@ let renderBlock = (blockData) => {
 	if (blockData.type == 'Link') {
 		// Declares a “template literal” of the dynamic HTML we want.
 		let linkItem =
+		// the setup here is basically a list element that contains the thumbnail with a preview image and a dialog that contains full content of the link and a section for the close and share buttons, the other blocks follow the same pattern. im also adding a data attribute to the dialog to store the share url for the share button
 			`
 			<li class="link-block">
 				<button type="button" class="link-button">
 					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 				</button>
-				<dialog>
+				<dialog data-share-url="${blockData.source.url}">
 					<a href="${blockData.source.url}"><img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="thumbnail"></a>
 					<section class="dialog-buttons">
 						<button type="button" class="dialog-close">
@@ -62,7 +63,7 @@ let renderBlock = (blockData) => {
 				<button type="button" class="image-button">
 					<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }" class="image-thumbnail">
 				</button>
-				<dialog>
+				<dialog data-share-url="${blockData.image.large.src_2x}">
 					<section class="dialog-container">
 						<img src="${blockData.image.large.src_2x}">
 						<section class="dialog-buttons">
@@ -93,7 +94,7 @@ let renderBlock = (blockData) => {
 				<button type="button" class="text-button">
 					<img src="assets/text-button.svg" alt="Read Text">
 				</button>
-				<dialog>
+				<dialog data-share-url="https://www.are.na/block/${blockData.id}">
 					<section class="dialog-container">
 						${blockData.content.html}
 						<section class="dialog-buttons">
@@ -129,7 +130,7 @@ let renderBlock = (blockData) => {
 					<button type="button" class="video-button">
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</button>
-					<dialog>
+					<dialog data-share-url="${blockData.attachment.url}">
 						<video controls src="${blockData.attachment.url}"></video>
 						<button class="close"></button>
 					</dialog>
@@ -151,7 +152,7 @@ let renderBlock = (blockData) => {
 					<button type="button" class="pdf-button">
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.large.src_2x }">
 					</button>
-					<dialog>
+					<dialog data-share-url="${blockData.attachment.url}">
 						<iframe src="${blockData.attachment.url}"></iframe>
 						<button class="close"></button>
 					</dialog>
@@ -170,7 +171,7 @@ let renderBlock = (blockData) => {
 					<button type="button" class="audio-button">
 						<img src="assets/audio-button.svg" alt="Play Audio">
 					</button>
-					<dialog>
+					<dialog data-share-url="${blockData.attachment.url}">
 						<section class="dialog-container">
 							<audio controls src="${blockData.attachment.url}"></audio>
 							<section class="dialog-buttons">
@@ -210,7 +211,7 @@ let renderBlock = (blockData) => {
 						<img src="assets/play-button.svg" alt="Play Video" class="play-button">
 						<img alt="${blockData.image.alt_text}" src="${ blockData.image.src }" class="video-thumbnail">
 					</button>
-					<dialog>
+					<dialog data-share-url="${blockData.source.url}">
 						<section class="dialog-container">
 							${ blockData.embed.html }
 							<section class="dialog-buttons">
@@ -257,6 +258,7 @@ let initInteraction = () => {
 		let openButton = block.querySelector('.image-button, .text-button, .link-button, .pdf-button, .video-button, .audio-button')
 		let dialog = block.querySelector('dialog')
 		let closeButton = dialog.querySelector('button')
+		let shareButton = dialog.querySelector('.dialog-share')
 
 		openButton.onclick = () => {
 			dialog.showModal()
@@ -265,6 +267,9 @@ let initInteraction = () => {
 		closeButton.onclick = () => {
 			dialog.close()
 		}
+
+		/* adding an event listener to the share button to share the original content of the dialog */
+		shareButton.onclick = () => shareContent(getURL(dialog))
 
 		dialog.onclick = (event) => { // Listen on our `modal` also…
 			if (event.target == dialog) { // Only if clicks are to itself (the background).
@@ -318,6 +323,7 @@ let navAnimation = () => {
 		['others', 'filter-others-button']
 	]
 
+	/* looping through the filters */
 	filters.forEach(([filter, id]) => {
 		/* adding an event listener to the filter buttons */
 		document.getElementById(id).addEventListener('click', () => {
@@ -329,6 +335,20 @@ let navAnimation = () => {
 			if (wrapper) wrapper.insertBefore(selectedButton, wrapper.firstChild)
 		})
 	})
+}
+
+/* a function to get the share url from the dialog data attribute */
+let getURL = (dialog) => {
+	/* using getAttribute() to get the data-share-url attribute from the dialog, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute */
+	return dialog.getAttribute('data-share-url')
+}
+
+/* a function to share the content of the dialog
+here im using the navigator.share() method to share the content of the dialog, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
+im basically passing the url and title to the share() method, from MDN: https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share */
+let shareContent = async (url = window.location.href, title = document.title) => {
+	/* in order for navigator.share() to work I need to run it over https and use await to wait for the share() method to complete, from MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/await */
+	await navigator.share({ title, url })
 }
 
 // Finally, a helper function to fetch data from the API, then run a callback function with it:
