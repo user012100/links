@@ -507,11 +507,11 @@ body:has(dialog[open]) {
 }
 
 .text-button img {
-	animation: wobble 4s ease-in-out infinite alternate-reverse;
+	animation: wobble 2s ease-in-out infinite alternate-reverse;
 }
 
 .audio-button img {
-	animation: wobbleAlternate 4s ease-in-out infinite alternate-reverse;
+	animation: wobbleAlternate 2s ease-in-out infinite alternate-reverse;
 }
 
 @keyframes hoverWobble {
@@ -521,11 +521,7 @@ body:has(dialog[open]) {
 	100% { transform: rotate(0deg); }
 }
 
-nav section:hover, #title-logo:hover, .play-button:hover, .dialog-close:hover, .dialog-share:hover {
-	animation: hoverWobble 0.75s linear infinite;
-}
-
-#omg-button, .dialog-middle-button {
+nav section:hover, #title-logo:hover, .play-button:hover, .dialog-close:hover, .dialog-share:hover, #omg-button, .dialog-middle-button {
 	animation: hoverWobble 0.75s linear infinite;
 }
 
